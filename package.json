@@ -1,0 +1,10 @@
+{
+  "name": "accofy",
+  "version": "1.0.0",
+  "description": "Accofy Landing Page",
+  "scripts": {
+    "build": "echo 'No build required'"
+  },
+  "author": "",
+  "license": "ISC"
+} 
