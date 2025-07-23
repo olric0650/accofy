@@ -4,16 +4,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const waitlistForm = document.getElementById('waitlist-form');
     const successMessage = document.getElementById('success-message');
 
-    // Show/hide scroll-to-top button
+    // Show/hide scroll-to-top button with throttling
+    let isScrolling = false;
     window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            scrollTopBtn.classList.add('visible');
-        } else {
-            scrollTopBtn.classList.remove('visible');
+        if (!isScrolling) {
+            window.requestAnimationFrame(() => {
+                if (window.pageYOffset > 300) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+                isScrolling = false;
+            });
+            isScrolling = true;
         }
     });
 
-    // Scroll to top when button is clicked
+    // Scroll to top with smooth behavior
     scrollTopBtn.addEventListener('click', () => {
         window.scrollTo({
             top: 0,
@@ -21,14 +28,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Handle form submission
+    // Handle form submission with async/await
     waitlistForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const formData = new FormData(waitlistForm);
-        const email = formData.get('email');
+        const submitButton = waitlistForm.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        submitButton.textContent = 'Sending...';
+        submitButton.disabled = true;
 
         try {
+            const formData = new FormData(waitlistForm);
             const response = await fetch(waitlistForm.action, {
                 method: 'POST',
                 body: formData,
@@ -52,6 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error('Error:', error);
             alert('Sorry, there was an error submitting the form. Please try again.');
+        } finally {
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
         }
     });
 
@@ -62,15 +75,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const target = document.querySelector(anchor.getAttribute('href'));
             
             if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                const headerOffset = 100;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
                 });
             }
         });
     });
 
-    // Add animation on scroll
+    // Intersection Observer for scroll animations
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -79,17 +96,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('visible');
+                // Unobserve after animation
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
     // Observe all sections except hero
     document.querySelectorAll('section:not(#hero)').forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'all 0.6s ease-out';
         observer.observe(section);
+    });
+
+    // Add loading="lazy" to images below the fold
+    document.querySelectorAll('img:not(.hero-logo)').forEach(img => {
+        if (!img.hasAttribute('loading')) {
+            img.setAttribute('loading', 'lazy');
+        }
     });
 }); 
