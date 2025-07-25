@@ -36,23 +36,24 @@ body::before {
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 150vw;
-    height: 150vh;
+    width: 140vw;
+    height: 140vh;
     background: url('../images/accofy-logo.png') no-repeat center center;
     background-size: contain;
-    opacity: 0.03;
-    transform: translate(-50%, -50%) rotate(-15deg);
+    opacity: 0.06;  /* Increased from 0.03 */
+    transform: translate(-50%, -50%) rotate(-10deg);
     pointer-events: none;
-    z-index: -1;
-    animation: subtle-float 20s ease-in-out infinite;
+    z-index: 0;
+    animation: subtle-float 25s ease-in-out infinite;
+    filter: drop-shadow(0 0 50px rgba(37, 99, 235, 0.15));
 }
 
 @keyframes subtle-float {
     0%, 100% {
-        transform: translate(-50%, -50%) rotate(-15deg) scale(1);
+        transform: translate(-50%, -50%) rotate(-10deg) scale(1);
     }
     50% {
-        transform: translate(-50%, -50%) rotate(-12deg) scale(1.05);
+        transform: translate(-50%, -50%) rotate(-8deg) scale(1.05);
     }
 }
 
@@ -79,11 +80,12 @@ body::after {
     z-index: -1;
 }
 
-/* Adjust header for better contrast */
+/* Header adjustments */
 .header {
+    height: 60px;
     background: rgba(2, 6, 23, 0.8);
     backdrop-filter: blur(10px);
-    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* Add glow effect to main logo */
@@ -96,45 +98,52 @@ body::after {
     filter: drop-shadow(0 0 30px rgba(37, 99, 235, 0.2));
 }
 
-/* Hero Section */
+/* Hero Section adjustments */
 .hero {
-    min-height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding-top: 80px;  /* Reduced padding since we removed the logo */
+    min-height: 90vh;
     position: relative;
-    padding: 4rem 0;
+    z-index: 1;
 }
 
-.hero::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -20%;
-    width: 80%;
-    height: 150%;
-    background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
-    opacity: 0.1;
-    filter: blur(60px);
-    animation: float 8s ease-in-out infinite;
+.hero .container {
+    position: relative;
+    z-index: 2;
 }
 
+.hero-title {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--light) 0%, rgba(255, 255, 255, 0.8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(37, 99, 235, 0.1);
+}
+
+.hero-subtitle {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    color: var(--gray);
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Add subtle glow effect */
 .hero::after {
     content: '';
     position: absolute;
-    bottom: -30%;
-    left: -10%;
-    width: 60%;
-    height: 120%;
-    background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
-    opacity: 0.1;
-    filter: blur(60px);
-    animation: float 10s ease-in-out infinite reverse;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-20px) scale(1.1); }
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 30%, 
+        rgba(37, 99, 235, 0.1) 0%, 
+        transparent 70%
+    );
+    z-index: 1;
+    pointer-events: none;
 }
 
 /* Modern Cards */
