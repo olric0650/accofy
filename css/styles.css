@@ -30,45 +30,70 @@ body {
     overflow-x: hidden;
 }
 
-.container {
-    width: 90%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    position: relative;
-}
-
-/* Header and Logo */
-.header {
-    width: 100%;
-    padding: 2rem 1rem;
-    position: relative;
-    z-index: 10;
-}
-
-.header::before {
+/* Background Logo Effect */
+body::before {
     content: '';
-    position: absolute;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 150vw;
+    height: 150vh;
+    background: url('../images/accofy-logo.png') no-repeat center center;
+    background-size: contain;
+    opacity: 0.03;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    pointer-events: none;
+    z-index: -1;
+    animation: subtle-float 20s ease-in-out infinite;
+}
+
+@keyframes subtle-float {
+    0%, 100% {
+        transform: translate(-50%, -50%) rotate(-15deg) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -50%) rotate(-12deg) scale(1.05);
+    }
+}
+
+/* Adjust background gradients */
+body {
+    background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Add overlay gradient */
+body::after {
+    content: '';
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--glass);
-    backdrop-filter: blur(10px);
+    background: radial-gradient(circle at 50% 50%, 
+        rgba(2, 6, 23, 0) 0%, 
+        rgba(2, 6, 23, 0.5) 100%
+    );
+    pointer-events: none;
     z-index: -1;
 }
 
+/* Adjust header for better contrast */
+.header {
+    background: rgba(2, 6, 23, 0.8);
+    backdrop-filter: blur(10px);
+    margin-bottom: 2rem;
+}
+
+/* Add glow effect to main logo */
 .header-logo {
-    width: 60%;
-    max-width: 600px;
-    height: auto;
-    filter: drop-shadow(0 10px 15px rgba(37, 99, 235, 0.2));
+    filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.1));
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .header-logo:hover {
-    transform: translateY(-5px) scale(1.02);
-    filter: drop-shadow(0 15px 20px rgba(37, 99, 235, 0.3));
+    filter: drop-shadow(0 0 30px rgba(37, 99, 235, 0.2));
 }
 
 /* Hero Section */
@@ -114,8 +139,8 @@ body {
 
 /* Modern Cards */
 .feature, .advanced-feature, .integration-item {
-    background: var(--glass);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(15px);
     border: 1px solid var(--glass-border);
     border-radius: 24px;
     padding: 2rem;
@@ -254,6 +279,30 @@ section h2 {
     font-size: clamp(2rem, 4vw, 3rem);
     margin-bottom: 3rem;
     color: var(--light);
+}
+
+/* Enhance section backgrounds */
+section {
+    position: relative;
+    z-index: 1;
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(2, 6, 23, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+section:hover::before {
+    opacity: 1;
 }
 
 /* Pain Points Section */
@@ -583,4 +632,21 @@ section h2 {
     .hero {
         padding-top: 120px;
     }
+} 
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    position: relative;
+}
+
+/* Header and Logo */
+.header {
+    width: 100%;
+    padding: 2rem 1rem;
+    position: relative;
+    z-index: 10;
 } 
