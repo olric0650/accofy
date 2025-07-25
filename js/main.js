@@ -164,4 +164,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
         lastScroll = currentScroll;
     });
+
+    // Form handling
+    const demoForm = document.getElementById('demo-form');
+    const submitButton = demoForm?.querySelector('button[type="submit"]');
+    const successMessage = document.getElementById('success-message');
+
+    if (demoForm) {
+        demoForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Show loading state
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.innerHTML = '<span>Sending...</span>';
+            }
+
+            try {
+                const response = await fetch(demoForm.action, {
+                    method: 'POST',
+                    body: new FormData(demoForm),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Show success message
+                    if (successMessage) {
+                        successMessage.textContent = 'Form submitted successfully! Check your email for confirmation.';
+                        successMessage.style.display = 'block';
+                        successMessage.style.backgroundColor = 'rgba(34, 197, 94, 0.1)';
+                        successMessage.style.color = '#22c55e';
+                    }
+                    demoForm.reset();
+                    
+                    // Log success for verification
+                    console.log('Form submitted successfully', data);
+                } else {
+                    throw new Error(data.error || 'Form submission failed');
+                }
+            } catch (error) {
+                console.error('Submission error:', error);
+                // Show error message
+                if (successMessage) {
+                    successMessage.textContent = 'There was an error submitting the form. Please try again.';
+                    successMessage.style.display = 'block';
+                    successMessage.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+                    successMessage.style.color = '#ef4444';
+                }
+            } finally {
+                // Reset button state
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = '<span>Schedule Demo</span><i class="fas fa-calendar-check"></i>';
+                }
+            }
+        });
+    }
 }); 

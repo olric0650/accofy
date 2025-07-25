@@ -402,10 +402,15 @@
                                 <!-- Hidden fields for better email organization -->
                                 <input type="hidden" name="_subject" value="New Demo Request from Accofy Website">
                                 <input type="hidden" name="_template" value="table">
+                                <!-- Add replyto field -->
+                                <input type="hidden" name="_replyto" value="">
                                 <button type="submit" class="submit-button">
                                     <span>Schedule Demo</span>
                                     <i class="fas fa-calendar-check"></i>
                                 </button>
+                            </div>
+                            <div id="success-message" class="success-message" style="display: none; margin-top: 1rem; padding: 1rem; border-radius: 8px;">
+                                <!-- Success/Error message will be shown here -->
                             </div>
                         </form>
                     </div>
@@ -425,9 +430,6 @@
                             </a>
                         </div>
                     </div>
-                </div>
-                <div id="success-message" class="success-message" hidden>
-                    Thanks! Our team will contact you shortly.
                 </div>
             </div>
         </section>
