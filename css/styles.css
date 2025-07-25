@@ -324,7 +324,7 @@ input[type="email"] {
 /* Footer */
 .footer {
     padding: 2rem 0;
-    background: var(--dark);
+    background: linear-gradient(180deg, transparent 0%, var(--dark) 100%);
     margin-top: var(--section-spacing);
 }
 
@@ -336,12 +336,23 @@ input[type="email"] {
 
 .footer-links {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
 }
 
 .footer-link {
     color: var(--gray);
     text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.footer-link:hover {
+    color: var(--light);
+}
+
+.copyright {
+    color: var(--gray);
+    font-size: 0.95rem;
 }
 
 /* Responsive Design */
