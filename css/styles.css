@@ -53,8 +53,8 @@ body {
 }
 
 .header-logo {
-    width: 90%;
-    max-width: 1200px;
+    width: 70%;  /* Reduced from 90% */
+    max-width: 800px;  /* Reduced from 1200px */
     height: auto;
     filter: drop-shadow(0 4px 6px rgba(255, 87, 34, 0.2));
     transition: all 0.3s ease;
@@ -414,17 +414,19 @@ input[type="email"] {
 /* Responsive adjustments */
 @media (max-width: 1200px) {
     .header-logo {
-        width: 600px;
+        width: 75%;
+        max-width: 700px;
     }
 }
 
 @media (max-width: 768px) {
     .header-logo {
-        width: 400px;
+        width: 80%;
+        max-width: 500px;
     }
     
-    .header .container {
-        padding: 1.5rem;
+    .header {
+        padding: 1.5rem 1rem;
     }
     
     .hero {
@@ -434,10 +436,11 @@ input[type="email"] {
 
 @media (max-width: 480px) {
     .header-logo {
-        width: 300px;
+        width: 85%;
+        max-width: 400px;
     }
     
-    .header .container {
+    .header {
         padding: 1rem;
     }
     
