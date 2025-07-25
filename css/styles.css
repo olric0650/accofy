@@ -82,6 +82,18 @@ p {
     height: auto;
     display: block;
     margin: 0 auto;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+}
+
+.header-logo:hover {
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .header-logo {
+        max-width: 140px;
+    }
 }
 
 /* Hero Section */
