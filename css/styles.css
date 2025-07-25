@@ -85,28 +85,25 @@ p {
     width: 100%;
     z-index: 100;
     background: var(--darker);
-    transition: all 0.3s ease;
-    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .header .container {
+    width: 100%;
     display: flex;
-    justify-content: center;  /* Center the logo */
+    justify-content: center;
     align-items: center;
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 2rem;  /* Increased padding */
+    padding: 2rem;
 }
 
 .header-logo {
-    max-width: 500px;  /* Increased size */
-    min-width: 400px;
+    width: 800px;  /* Much larger size */
     height: auto;
     display: block;
-    object-fit: contain;
     transition: all 0.3s ease;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-    margin: 2rem 0;
 }
 
 .header-logo:hover {
@@ -122,15 +119,19 @@ p {
 
 /* Hero Section */
 .hero {
+    padding-top: 200px;
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;  /* Align from top */
     justify-content: center;
-    position: relative;
-    overflow: hidden;
-    padding: 8rem 0 var(--section-spacing);
     text-align: center;
-    background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+}
+
+.hero .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .hero-background {
@@ -466,6 +467,7 @@ section h2:after {
 /* Waitlist Form */
 .waitlist {
     text-align: center;
+    width: 100%;
 }
 
 /* Form Elements */
@@ -473,20 +475,20 @@ section h2:after {
     max-width: 500px;
     margin: 2rem auto;
     display: flex;
+    flex-direction: column;  /* Stack input and button vertically */
     gap: 1rem;
-    position: relative;
+    align-items: center;  /* Center items */
 }
 
 input[type="email"] {
-    flex: 1;
+    width: 100%;
     padding: 1rem 1.5rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--border-radius);
     background: rgba(255, 255, 255, 0.05);
     color: var(--light);
-    font-size: 1rem;
-    font-family: inherit;
-    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    text-align: center;
 }
 
 input[type="email"]:focus {
@@ -510,6 +512,12 @@ input[type="email"]:focus {
 .success-message.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+.submit-button {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
 }
 
 /* Footer */
@@ -664,30 +672,19 @@ input[type="email"]:focus {
 }
 
 /* Responsive adjustments */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
     .header-logo {
-        max-width: 400px;
-        min-width: 320px;
-    }
-    
-    .header .container {
-        padding: 1.5rem;
-    }
-    
-    .hero {
-        padding-top: 180px;
+        width: 600px;
     }
 }
 
 @media (max-width: 768px) {
     .header-logo {
-        max-width: 320px;
-        min-width: 260px;
-        margin: 1rem 0;
+        width: 400px;
     }
     
     .header .container {
-        padding: 1rem;
+        padding: 1.5rem;
     }
     
     .hero {
@@ -697,9 +694,11 @@ input[type="email"]:focus {
 
 @media (max-width: 480px) {
     .header-logo {
-        max-width: 280px;
-        min-width: 220px;
-        margin: 0.5rem 0;
+        width: 300px;
+    }
+    
+    .header .container {
+        padding: 1rem;
     }
     
     .hero {
