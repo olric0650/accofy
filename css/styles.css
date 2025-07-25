@@ -1,4 +1,4 @@
-/* Base Styles */
+/* Optimized Base Styles */
 :root {
     --primary: #ff5722;
     --primary-dark: #f4511e;
@@ -8,15 +8,23 @@
     --light: #f8fafc;
     --gray: #64748b;
     --success: #22c55e;
-    --max-width: 960px;
+    --max-width: 1200px;
     --section-spacing: 6rem;
     --border-radius: 12px;
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
+/* Performance optimizations */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 html {
@@ -29,7 +37,6 @@ body {
     line-height: 1.6;
     color: var(--light);
     background-color: var(--darker);
-    -webkit-font-smoothing: antialiased;
 }
 
 .container {
@@ -79,6 +86,9 @@ p {
     backdrop-filter: blur(8px);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
+    transform: translateZ(0);
+    will-change: transform;
+    transition: transform var(--transition-normal);
 }
 
 .header .container {
@@ -100,6 +110,12 @@ p {
 .header-logo:hover {
     transform: translateY(-1px);
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+.header.scrolled {
+    background: rgba(2, 6, 23, 0.98);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-md);
 }
 
 /* Hero Section */
@@ -157,15 +173,44 @@ p {
     position: relative;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
 }
 
 .cta-button:hover, .submit-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4);
+    transform: translateY(-2px) translateZ(0);
+    box-shadow: var(--shadow-lg);
 }
 
 .cta-button:active, .submit-button:active {
     transform: translateY(1px);
+}
+
+/* Loading states */
+.submit-button.loading {
+    position: relative;
+    color: transparent;
+}
+
+.submit-button.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: button-loading 0.8s infinite linear;
+}
+
+@keyframes button-loading {
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* Sections */
@@ -231,13 +276,16 @@ section h2:after {
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
 }
 
 .pain-point:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) translateZ(0);
     background: rgba(255, 255, 255, 0.05);
     border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-lg);
 }
 
 .pain-point i {
@@ -266,13 +314,16 @@ section h2:after {
     border-radius: var(--border-radius);
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.05);
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
 }
 
 .feature:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) translateZ(0);
     background: rgba(255, 255, 255, 0.05);
     border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-lg);
 }
 
 .feature-icon {
@@ -445,11 +496,11 @@ input[type="email"]:focus {
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translate3d(0, 20px, 0);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
@@ -461,12 +512,14 @@ input[type="email"]:focus {
 
     .form-group {
         flex-direction: column;
+        gap: 1rem;
     }
     
     .feature {
         flex-direction: column;
         align-items: center;
         text-align: center;
+        padding: 2rem;
     }
     
     .footer-content {
@@ -475,10 +528,19 @@ input[type="email"]:focus {
     }
 
     .container {
-        padding: 0 1.5rem;
+        padding: 0 1.25rem;
     }
 
     .hero {
         padding-top: 7rem;
+    }
+} 
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 } 
