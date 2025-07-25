@@ -76,42 +76,42 @@ p {
     color: var(--gray);
 }
 
-/* Header */
+/* Header and Logo */
 .header {
-    padding: 1.5rem 0;
+    padding: 0;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 100;
-    background: rgba(2, 6, 23, 0.95);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    background: var(--darker);
     transition: all 0.3s ease;
-    transform: translateZ(0);
-    will-change: transform;
-    transition: transform var(--transition-normal);
+    height: auto;
 }
 
 .header .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;  /* Center the logo */
     align-items: center;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 2rem;  /* Increased padding */
 }
 
 .header-logo {
-    max-width: 260px;
-    min-width: 200px;
+    max-width: 500px;  /* Increased size */
+    min-width: 400px;
     height: auto;
     display: block;
     object-fit: contain;
     transition: all 0.3s ease;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    margin: 2rem 0;
 }
 
 .header-logo:hover {
-    transform: translateY(-1px);
-    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+    transform: translateY(-2px);
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4)) brightness(1.1);
 }
 
 .header.scrolled {
@@ -655,5 +655,54 @@ input[type="email"]:focus {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+    }
+} 
+
+/* Hero Section Adjustment */
+.hero {
+    padding-top: 200px; /* Increased to accommodate larger logo */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .header-logo {
+        max-width: 400px;
+        min-width: 320px;
+    }
+    
+    .header .container {
+        padding: 1.5rem;
+    }
+    
+    .hero {
+        padding-top: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-logo {
+        max-width: 320px;
+        min-width: 260px;
+        margin: 1rem 0;
+    }
+    
+    .header .container {
+        padding: 1rem;
+    }
+    
+    .hero {
+        padding-top: 140px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-logo {
+        max-width: 280px;
+        min-width: 220px;
+        margin: 0.5rem 0;
+    }
+    
+    .hero {
+        padding-top: 120px;
     }
 } 
