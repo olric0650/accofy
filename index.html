@@ -378,17 +378,35 @@
                 <h2>Start Automating Today</h2>
                 <p class="section-subtitle">Schedule a personalized demo with our experts</p>
                 <div class="action-cards">
+                    <!-- Update the demo form with Formspree configuration -->
                     <div class="action-card">
                         <div class="action-icon">
                             <i class="fas fa-calendar-check"></i>
                         </div>
                         <h3>Book a Demo</h3>
                         <p>See Accofy in action with your data</p>
-                        <form action="https://formspree.io/f/yourFormID" method="POST" id="demo-form" class="action-form">
+                        <form action="https://formspree.io/f/xaygwgbj" method="POST" id="demo-form" class="action-form">
                             <div class="form-group">
                                 <input type="email" name="email" placeholder="Work Email" required>
+                                <input type="text" name="name" placeholder="Your Name" required>
                                 <input type="text" name="company" placeholder="Company Name" required>
-                                <button type="submit" class="submit-button">Schedule Demo</button>
+                                <input type="tel" name="phone" placeholder="Phone Number" required>
+                                <select name="platform" required>
+                                    <option value="">Select Your Platform</option>
+                                    <option value="netsuite">NetSuite</option>
+                                    <option value="quickbooks">QuickBooks Online</option>
+                                    <option value="both">Both Platforms</option>
+                                </select>
+                                <textarea name="message" placeholder="Tell us about your reconciliation needs" rows="3"></textarea>
+                                <!-- Hidden fields for better email organization -->
+                                <input type="hidden" name="_subject" value="New Demo Request from Accofy Website">
+                                <input type="hidden" name="_template" value="table">
+                                <!-- Redirect after submission -->
+                                <input type="hidden" name="_next" value="https://accofy.online/thank-you">
+                                <button type="submit" class="submit-button">
+                                    <span>Schedule Demo</span>
+                                    <i class="fas fa-calendar-check"></i>
+                                </button>
                             </div>
                         </form>
                     </div>
