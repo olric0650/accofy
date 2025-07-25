@@ -35,7 +35,7 @@ body {
 /* Header and Logo */
 .header {
     width: 100%;
-    background: var(--darker);
+    background: linear-gradient(180deg, var(--darker) 0%, transparent 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,6 +55,12 @@ body {
     width: 90%;
     max-width: 1200px;
     height: auto;
+    filter: drop-shadow(0 4px 6px rgba(255, 87, 34, 0.2));
+    transition: filter 0.3s ease;
+}
+
+.header-logo:hover {
+    filter: drop-shadow(0 6px 8px rgba(255, 87, 34, 0.3));
 }
 
 /* Hero Section */
@@ -67,6 +73,7 @@ body {
     justify-content: flex-start;
     padding: 4rem 1rem;
     text-align: center;
+    background: linear-gradient(180deg, transparent 0%, var(--darker) 100%);
 }
 
 .hero .container {
@@ -91,17 +98,20 @@ body {
 /* Section Styles */
 section {
     padding: var(--section-spacing) 0;
+    position: relative;
 }
 
 section h2 {
     text-align: center;
     font-size: clamp(2rem, 4vw, 3rem);
     margin-bottom: 3rem;
+    color: var(--light);
 }
 
 /* Pain Points Section */
 .pain-points {
-    background: var(--dark);
+    background: linear-gradient(180deg, transparent 0%, var(--dark) 50%, transparent 100%);
+    padding: var(--section-spacing) 0;
 }
 
 .pain-points-grid {
@@ -129,6 +139,23 @@ section h2 {
 }
 
 /* Features Section */
+.features {
+    position: relative;
+    z-index: 1;
+}
+
+.features::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, transparent 0%, var(--dark) 50%, transparent 100%);
+    opacity: 0.5;
+    z-index: -1;
+}
+
 .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -153,22 +180,11 @@ section h2 {
     margin-bottom: 1.5rem;
 }
 
-/* Preview Section */
-.preview {
-    background: var(--dark);
-}
-
-.preview-image-wrapper {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 3rem;
-}
-
-.preview-image {
-    width: 100%;
-    height: auto;
-    display: block;
+/* Waitlist Section */
+.waitlist {
+    background: linear-gradient(180deg, transparent 0%, var(--dark) 100%);
+    padding: var(--section-spacing) 0;
+    text-align: center;
 }
 
 /* Button Styles */
