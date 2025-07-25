@@ -28,7 +28,7 @@
                     <a href="#enterprise-security" class="nav-link">Security</a>
                 </div>
                 <div class="nav-right">
-                    <a href="#waitlist" class="nav-button">Join Waitlist</a>
+                    <a href="#get-started" class="nav-button">Get Started <i class="fas fa-arrow-right"></i></a>
                 </div>
             </nav>
         </div>
@@ -39,7 +39,7 @@
         <div class="container">
             <h1 class="hero-title">Automate Your NetSuite Reconciliations</h1>
             <p class="hero-subtitle">No more Excel. No more guesswork.</p>
-            <a href="#waitlist" class="cta-button">🚀 Join the Waitlist</a>
+            <a href="#get-started" class="cta-button">Request Demo <i class="fas fa-arrow-right"></i></a>
         </div>
     </section>
 
@@ -372,19 +372,45 @@
             </div>
         </section>
 
-        <!-- Waitlist Form -->
-        <section id="waitlist" class="waitlist">
+        <!-- Replace waitlist section with get started section -->
+        <section id="get-started" class="get-started">
             <div class="container">
-                <h2>Join the Waitlist</h2>
-                <p>Be the first to know when we launch.</p>
-                <form action="https://formspree.io/f/yourFormID" method="POST" id="waitlist-form">
-                    <div class="form-group">
-                        <input type="email" name="email" placeholder="Enter your work email" required>
-                        <button type="submit" class="submit-button">Join Waitlist</button>
+                <h2>Start Automating Today</h2>
+                <p class="section-subtitle">Schedule a personalized demo with our experts</p>
+                <div class="action-cards">
+                    <div class="action-card">
+                        <div class="action-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <h3>Book a Demo</h3>
+                        <p>See Accofy in action with your data</p>
+                        <form action="https://formspree.io/f/yourFormID" method="POST" id="demo-form" class="action-form">
+                            <div class="form-group">
+                                <input type="email" name="email" placeholder="Work Email" required>
+                                <input type="text" name="company" placeholder="Company Name" required>
+                                <button type="submit" class="submit-button">Schedule Demo</button>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                    
+                    <div class="action-card">
+                        <div class="action-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Talk to Sales</h3>
+                        <p>Get pricing and implementation details</p>
+                        <div class="contact-options">
+                            <a href="tel:+1234567890" class="contact-button">
+                                <i class="fas fa-phone"></i> Call Us
+                            </a>
+                            <a href="mailto:sales@accofy.com" class="contact-button">
+                                <i class="fas fa-envelope"></i> Email Sales
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 <div id="success-message" class="success-message" hidden>
-                    Thanks for joining! We'll keep you updated.
+                    Thanks! Our team will contact you shortly.
                 </div>
             </div>
         </section>

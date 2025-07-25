@@ -1075,3 +1075,149 @@ section:hover::before {
         grid-template-columns: 1fr;
     }
 } 
+
+/* Get Started Section */
+.get-started {
+    background: linear-gradient(180deg, transparent 0%, rgba(2, 6, 23, 0.8) 100%);
+    padding: var(--section-spacing) 0;
+}
+
+.section-subtitle {
+    color: var(--gray);
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.action-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.action-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(37, 99, 235, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.action-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2rem;
+    font-size: 2rem;
+    color: var(--light);
+}
+
+.action-card h3 {
+    color: var(--light);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.action-card p {
+    color: var(--gray);
+    margin-bottom: 2rem;
+}
+
+.action-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.action-form input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: var(--light);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.action-form input:focus {
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.05);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.contact-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: var(--light);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.contact-button:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+/* Update nav-button and cta-button */
+.nav-button,
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+}
+
+.nav-button i,
+.cta-button i {
+    transition: transform 0.3s ease;
+}
+
+.nav-button:hover i,
+.cta-button:hover i {
+    transform: translateX(4px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .action-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .action-card {
+        padding: 2rem;
+    }
+
+    .action-icon {
+        width: 64px;
+        height: 64px;
+        font-size: 1.5rem;
+    }
+} 
