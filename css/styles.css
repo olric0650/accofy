@@ -619,6 +619,25 @@ section:hover::before {
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     filter: brightness(0.9) contrast(1.1);
     transition: all 0.3s ease;
+    border-radius: 8px 8px 0 0;
+}
+
+.gif-card img:not([src]), 
+.gif-card img[src=""], 
+.gif-card img[src*="error"] {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--light);
+    font-size: 2rem;
+}
+
+.gif-card img:not([src])::after, 
+.gif-card img[src=""]::after, 
+.gif-card img[src*="error"]::after {
+    content: "📊";
+    font-size: 3rem;
 }
 
 .gif-card h3 {
