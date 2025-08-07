@@ -118,6 +118,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
                 
+                // Trigger animation for the element itself
+                if (entry.target.classList.contains('slide-in-left') || 
+                    entry.target.classList.contains('slide-in-right') || 
+                    entry.target.classList.contains('slide-in-bottom') || 
+                    entry.target.classList.contains('slide-in-top') || 
+                    entry.target.classList.contains('fade-in-scale')) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translate(0, 0)';
+                }
+                
                 // Add staggered animations for child elements
                 const animatedElements = entry.target.querySelectorAll('.slide-in-left, .slide-in-right, .slide-in-bottom, .slide-in-top, .fade-in-scale');
                 animatedElements.forEach((el, index) => {
@@ -134,17 +144,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const observer = new IntersectionObserver(observerCallback, {
         threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
+        rootMargin: '0px 0px -50px 0px'
     });
 
     // Observe sections for animations
     elements.sections.forEach(section => observer.observe(section));
     
-    // Observe individual animated elements
-    const animatedElements = document.querySelectorAll('.slide-in-left, .slide-in-right, .slide-in-bottom, .slide-in-top, .fade-in-scale');
-    animatedElements.forEach(el => {
+    // Observe ALL individual animated elements
+    const allAnimatedElements = document.querySelectorAll('.slide-in-left, .slide-in-right, .slide-in-bottom, .slide-in-top, .fade-in-scale');
+    allAnimatedElements.forEach(el => {
+        // Set initial state
         el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
+        if (el.classList.contains('slide-in-left')) {
+            el.style.transform = 'translateX(-80px)';
+        } else if (el.classList.contains('slide-in-right')) {
+            el.style.transform = 'translateX(80px)';
+        } else if (el.classList.contains('slide-in-bottom')) {
+            el.style.transform = 'translateY(80px)';
+        } else if (el.classList.contains('slide-in-top')) {
+            el.style.transform = 'translateY(-80px)';
+        } else {
+            el.style.transform = 'translateY(30px)';
+        }
+        
+        // Observe each animated element individually
+        observer.observe(el);
     });
 
     // Optimize images

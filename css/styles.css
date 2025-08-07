@@ -504,23 +504,33 @@ input[type="email"]:focus {
 
 /* Animation Classes */
 .slide-in-left {
-    animation: slideInFromLeft 1s ease-out forwards;
+    opacity: 0;
+    transform: translateX(-80px);
+    transition: all 1s ease-out;
 }
 
 .slide-in-right {
-    animation: slideInFromRight 1s ease-out forwards;
+    opacity: 0;
+    transform: translateX(80px);
+    transition: all 1s ease-out;
 }
 
 .slide-in-bottom {
-    animation: slideInFromBottom 1s ease-out forwards;
+    opacity: 0;
+    transform: translateY(80px);
+    transition: all 1s ease-out;
 }
 
 .slide-in-top {
-    animation: slideInFromTop 1s ease-out forwards;
+    opacity: 0;
+    transform: translateY(-80px);
+    transition: all 1s ease-out;
 }
 
 .fade-in-scale {
-    animation: fadeInScale 0.8s ease-out forwards;
+    opacity: 0;
+    transform: scale(0.9) translateY(30px);
+    transition: all 1s ease-out;
 }
 
 /* Enhanced hover effects for all sections */
