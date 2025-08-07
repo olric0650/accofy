@@ -26,22 +26,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // Scroll handler with throttling
     const handleScroll = throttle(() => {
         // Header shadow on scroll
-        elements.header.classList.toggle('scrolled', window.scrollY > 50);
+        if (elements.header) {
+            elements.header.classList.toggle('scrolled', window.scrollY > 50);
+        }
         
         // Scroll to top button visibility
-        elements.scrollTopBtn.classList.toggle('visible', window.scrollY > 300);
+        if (elements.scrollTopBtn) {
+            elements.scrollTopBtn.classList.toggle('visible', window.scrollY > 300);
+        }
     }, 100);
 
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     // Optimized smooth scroll
-    elements.scrollTopBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+    if (elements.scrollTopBtn) {
+        elements.scrollTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
-    });
+    }
 
     // Enhanced form submission with loading state
     elements.waitlistForm?.addEventListener('submit', async (e) => {
@@ -139,6 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mobile menu functionality
     const navLeft = document.querySelector('.nav-left');
     const navLinks = document.querySelectorAll('.nav-link');
+    const navTrigger = document.querySelector('.nav-mobile-trigger');
 
     // Close mobile menu when clicking a link
     navLinks.forEach(link => {
@@ -148,6 +155,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Toggle mobile menu
+    if (navTrigger) {
+        const toggleMenu = () => navLeft.classList.toggle('active');
+        navTrigger.addEventListener('click', toggleMenu);
+        navTrigger.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleMenu();
+            }
+        });
+    }
 
     // Add scroll class to header
     const header = document.querySelector('.header');

@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accofy - Automate Your NetSuite Reconciliations</title>
     
+    <!-- Preconnects for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
@@ -16,14 +20,38 @@
 
     <!-- Meta tags -->
     <meta name="description" content="Automate your NetSuite reconciliations. No more Excel. No more guesswork.">
+    <link rel="canonical" href="https://www.accofy.online/">
+    <link rel="icon" type="image/png" href="images/accofy-logo.png">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Accofy - Automate Your NetSuite Reconciliations">
+    <meta property="og:description" content="No more Excel. No more guesswork.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.accofy.online/">
+    <meta property="og:image" content="images/accofy-logo.png">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Accofy - Automate Your NetSuite Reconciliations">
+    <meta name="twitter:description" content="No more Excel. No more guesswork.">
+    <meta name="twitter:image" content="images/accofy-logo.png">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <div class="container">
             <nav class="nav">
+                <div class="nav-mobile-trigger" aria-label="Toggle navigation" role="button" tabindex="0">
+                    <i class="fas fa-bars"></i>
+                </div>
                 <div class="nav-left">
+                    <a href="#" class="brand" aria-label="Accofy home">
+                        <img src="images/accofy-logo.png" alt="Accofy" class="brand-logo" width="28" height="28" />
+                        <span class="brand-name">Accofy</span>
+                    </a>
                     <a href="#features" class="nav-link">Features</a>
+                    <a href="#capabilities" class="nav-link">Capabilities</a>
+                    <a href="#toolkit" class="nav-link">Toolkit</a>
                     <a href="#platforms" class="nav-link">Platforms</a>
                     <a href="#enterprise-security" class="nav-link">Security</a>
                 </div>
@@ -37,8 +65,8 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1 class="hero-title">Automate Your NetSuite Reconciliations</h1>
-            <p class="hero-subtitle">No more Excel. No more guesswork.</p>
+            <h1 class="hero-title">Automate Financial Ops with Confidence</h1>
+            <p class="hero-subtitle">AP/AR automation, bank recs, and integrations across cloud systems. Built by accounting pros for scale and accuracy.</p>
             <a href="#get-started" class="cta-button">Request Demo <i class="fas fa-arrow-right"></i></a>
         </div>
     </section>
@@ -109,6 +137,69 @@
                             <h3>Built by Experts</h3>
                             <p>Created by accountants with extensive NetSuite experience.</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Capabilities Section -->
+        <section id="capabilities" class="capabilities">
+            <div class="container">
+                <h2>What We Do — End to End</h2>
+                <div class="capabilities-grid">
+                    <div class="capability-card">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <h3>AP & AR Automation</h3>
+                        <p>Streamline invoice matching, dispute handling, and payment workflows with audit-ready trails.</p>
+                    </div>
+                    <div class="capability-card">
+                        <i class="fas fa-university"></i>
+                        <h3>Bank Reconciliations</h3>
+                        <p>Smart memo and description matching with tolerances, date windows, and configurable rules.</p>
+                    </div>
+                    <div class="capability-card">
+                        <i class="fas fa-cloud"></i>
+                        <h3>Cloud Integrations</h3>
+                        <p>NetSuite, QuickBooks, Stripe, Snowflake, AWS—robust, secure, and real-time where it matters.</p>
+                    </div>
+                    <div class="capability-card">
+                        <i class="fas fa-database"></i>
+                        <h3>Large-Scale Data</h3>
+                        <p>Designed for millions of rows. Reliable pipelines, deduping, and performance built in.</p>
+                    </div>
+                    <div class="capability-card">
+                        <i class="fas fa-shield-check"></i>
+                        <h3>Governance & Controls</h3>
+                        <p>Role-based access, approvals, logs, and compliance (SOC 2, GDPR-ready) from day one.</p>
+                    </div>
+                    <div class="capability-card">
+                        <i class="fas fa-screwdriver-wrench"></i>
+                        <h3>Problem Solvers</h3>
+                        <p>We partner with finance teams to untangle edge cases, custom mappings, and messy data.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Toolkit (GIFs) Section -->
+        <section id="toolkit" class="toolkit">
+            <div class="container">
+                <h2>Accounting Toolkit — See It in Action</h2>
+                <div class="gif-grid">
+                    <div class="gif-card">
+                        <img src="https://media.giphy.com/media/LMcB8XospGZO8UQq87/giphy.gif" alt="Workflow automation preview" loading="lazy">
+                        <h3>Automated Workflows</h3>
+                        <p>Route, approve, and reconcile faster with configurable rules.</p>
+                    </div>
+                    <div class="gif-card">
+                        <img src="https://media.giphy.com/media/ZVik7pBtu9dNS/giphy.gif" alt="Analytics and dashboards" loading="lazy">
+                        <h3>Live Analytics</h3>
+                        <p>Track match rates, variances, and throughput in real time.</p>
+                    </div>
+                    <div class="gif-card">
+                        <img src="https://media.giphy.com/media/5eLDrEaRGHegx2FeF2/giphy.gif" alt="Integrations across cloud systems" loading="lazy">
+                        <h3>Deep Integrations</h3>
+                        <p>Connect your ERP, banks, payment processors, and data warehouse.</p>
                     </div>
                 </div>
             </div>
@@ -388,17 +479,27 @@
                         <!-- Update form with Formspree format -->
                         <form action="https://formspree.io/f/xdkdzqrg" method="POST" id="demo-form" class="action-form">
                             <div class="form-group">
-                                <input type="email" name="email" placeholder="Work Email" required>
-                                <input type="text" name="name" placeholder="Your Name" required>
-                                <input type="text" name="company" placeholder="Company Name" required>
-                                <input type="tel" name="phone" placeholder="Phone Number" required>
-                                <select name="platform" required>
+                                <label for="email" class="sr-only">Work Email</label>
+                                <input id="email" type="email" name="email" placeholder="Work Email" required aria-required="true" autocomplete="email">
+                                
+                                <label for="name" class="sr-only">Your Name</label>
+                                <input id="name" type="text" name="name" placeholder="Your Name" required aria-required="true" autocomplete="name">
+                                
+                                <label for="company" class="sr-only">Company Name</label>
+                                <input id="company" type="text" name="company" placeholder="Company Name" required aria-required="true" autocomplete="organization">
+                                
+                                <label for="phone" class="sr-only">Phone Number</label>
+                                <input id="phone" type="tel" name="phone" placeholder="Phone Number" required aria-required="true" autocomplete="tel">
+                                
+                                <label for="platform" class="sr-only">Platform</label>
+                                <select id="platform" name="platform" required aria-required="true">
                                     <option value="">Select Your Platform</option>
                                     <option value="netsuite">NetSuite</option>
                                     <option value="quickbooks">QuickBooks Online</option>
                                     <option value="both">Both Platforms</option>
                                 </select>
-                                <textarea name="message" placeholder="Tell us about your reconciliation needs" rows="3"></textarea>
+                                <label for="message" class="sr-only">Message</label>
+                                <textarea id="message" name="message" placeholder="Tell us about your reconciliation needs" rows="3"></textarea>
                                 <!-- Hidden fields for better email organization -->
                                 <input type="hidden" name="_subject" value="New Demo Request from Accofy Website">
                                 <input type="hidden" name="_next" value="https://www.accofy.online/thank-you">
@@ -406,12 +507,14 @@
                                 <input type="hidden" name="_template" value="table">
                                 <!-- Add replyto field -->
                                 <input type="hidden" name="_replyto" value="emre@accofy.net">
+                                <!-- Honeypot field -->
+                                <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute; left:-5000px;">
                                 <button type="submit" class="submit-button">
                                     <span>Schedule Demo</span>
                                     <i class="fas fa-calendar-check"></i>
                                 </button>
                             </div>
-                            <div id="success-message" class="success-message" style="display: none; margin-top: 1rem; padding: 1rem; border-radius: 8px;">
+                            <div id="success-message" class="success-message" role="status" aria-live="polite" style="display: none; margin-top: 1rem; padding: 1rem; border-radius: 8px;">
                                 <!-- Success/Error message will be shown here -->
                             </div>
                         </form>
@@ -424,10 +527,14 @@
                         <h3>Talk to Sales</h3>
                         <p>Get pricing and implementation details</p>
                         <div class="contact-options">
+                            <a href="tel:+1234567890" class="contact-button">
+                                <i class="fas fa-phone"></i> Call Us
+                            </a>
                             <a href="mailto:emre@accofy.net" class="contact-button">
                                 <i class="fas fa-envelope"></i> Email Sales
                             </a>
-                        </div>                    </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -447,6 +554,11 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="js/main.js"></script>
+    <script src="js/main.js" defer></script>
+    
+    <!-- Scroll to top button -->
+    <a href="#" id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 </body>
 </html> 
