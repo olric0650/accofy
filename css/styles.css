@@ -523,11 +523,19 @@ input[type="email"]:focus {
     animation: fadeInScale 0.8s ease-out forwards;
 }
 
-/* Enhanced hover effects */
+/* Enhanced hover effects for all sections */
 .feature:hover,
 .capability-card:hover,
-.pain-point:hover {
+.pain-point:hover,
+.platform-card:hover,
+.processor-card:hover,
+.security-card:hover,
+.integration-item:hover,
+.benefit-item:hover,
+.action-card:hover {
     animation: pulseGlow 2s ease-in-out infinite;
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 /* Initial hidden state */
@@ -1025,11 +1033,13 @@ section:hover::before {
     .hero-title {
         font-size: clamp(2rem, 5vw, 3rem);
         line-height: 1.2;
+        color: var(--light) !important;
     }
     
     .hero-subtitle {
         font-size: clamp(1rem, 3vw, 1.25rem);
         line-height: 1.4;
+        color: var(--gray) !important;
     }
     
     .cta-button {
@@ -1037,11 +1047,20 @@ section:hover::before {
         font-size: 1.1rem;
         width: 100%;
         max-width: 300px;
+        color: var(--light) !important;
     }
     
     .feature, .capability-card, .pain-point {
         padding: 1.5rem;
         margin-bottom: 1rem;
+    }
+    
+    .feature h3, .capability-card h3, .pain-point h3 {
+        color: var(--light) !important;
+    }
+    
+    .feature p, .capability-card p, .pain-point p {
+        color: var(--gray) !important;
     }
     
     .gif-card img {
@@ -1052,16 +1071,39 @@ section:hover::before {
         padding: 1.5rem;
     }
     
+    .action-card h3 {
+        color: var(--light) !important;
+    }
+    
+    .action-card p {
+        color: var(--gray) !important;
+    }
+    
     .action-form input,
     .action-form select,
     .action-form textarea {
         padding: 1.25rem 1.5rem;
         font-size: 1rem;
+        color: var(--light) !important;
     }
     
     .submit-button {
         padding: 1.25rem;
         font-size: 1.1rem;
+        color: var(--light) !important;
+    }
+    
+    /* Ensure all text is visible on mobile */
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--light) !important;
+    }
+    
+    p, span, div {
+        color: var(--light) !important;
+    }
+    
+    .gray-text {
+        color: var(--gray) !important;
     }
 } 
 
