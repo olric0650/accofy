@@ -1,18 +1,18 @@
 /* Modern Variables */
 :root {
-    --primary: #2563eb;
-    --primary-light: #3b82f6;
-    --secondary: #0ea5e9;
+    --primary: #1e293b;
+    --primary-light: #334155;
+    --secondary: #475569;
     --dark: #0f172a;
     --darker: #020617;
-    --light: #f8fafc;
+    --light: #f1f5f9;
     --gray: #64748b;
-    --success: #22c55e;
+    --success: #10b981;
     --warning: #f59e0b;
     --error: #ef4444;
-    --glass: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.05);
-    --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
     --section-spacing: 6rem;
 }
 
@@ -27,7 +27,7 @@ body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
     color: var(--light);
-    background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #0f172a 100%);
     min-height: 100vh;
     overflow-x: hidden;
 }
@@ -411,11 +411,33 @@ input[type="email"]:focus {
     }
 }
 
-/* Animations */
-@keyframes fadeUp {
+/* Professional Scroll Animations */
+@keyframes slideInFromLeft {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
     }
     to {
         opacity: 1;
@@ -423,8 +445,59 @@ input[type="email"]:focus {
     }
 }
 
-.feature, .advanced-feature {
-    animation: fadeUp 0.6s ease-out forwards;
+@keyframes slideInFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Animation Classes */
+.slide-in-left {
+    animation: slideInFromLeft 0.8s ease-out forwards;
+}
+
+.slide-in-right {
+    animation: slideInFromRight 0.8s ease-out forwards;
+}
+
+.slide-in-bottom {
+    animation: slideInFromBottom 0.8s ease-out forwards;
+}
+
+.slide-in-top {
+    animation: slideInFromTop 0.8s ease-out forwards;
+}
+
+.fade-in-scale {
+    animation: fadeInScale 0.6s ease-out forwards;
+}
+
+/* Initial hidden state */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Section Styles */

@@ -112,11 +112,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Optimized Intersection Observer
+    // Professional Scroll Animations
     const observerCallback = (entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+                
+                // Add staggered animations for child elements
+                const animatedElements = entry.target.querySelectorAll('.slide-in-left, .slide-in-right, .slide-in-bottom, .slide-in-top, .fade-in-scale');
+                animatedElements.forEach((el, index) => {
+                    setTimeout(() => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translate(0, 0)';
+                    }, index * 200); // Stagger by 200ms
+                });
+                
                 observer.unobserve(entry.target);
             }
         });
@@ -124,11 +134,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const observer = new IntersectionObserver(observerCallback, {
         threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        rootMargin: '0px 0px -100px 0px'
     });
 
     // Observe sections for animations
     elements.sections.forEach(section => observer.observe(section));
+    
+    // Observe individual animated elements
+    const animatedElements = document.querySelectorAll('.slide-in-left, .slide-in-right, .slide-in-bottom, .slide-in-top, .fade-in-scale');
+    animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+    });
 
     // Optimize images
     elements.lazyImages.forEach(img => {
