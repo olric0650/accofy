@@ -1,18 +1,18 @@
 /* Modern Variables */
 :root {
-    --primary: #1e293b;
-    --primary-light: #334155;
-    --secondary: #475569;
-    --dark: #0f172a;
-    --darker: #020617;
-    --light: #f1f5f9;
-    --gray: #64748b;
+    --primary: #111827;
+    --primary-light: #1f2937;
+    --secondary: #374151;
+    --dark: #000000;
+    --darker: #000000;
+    --light: #ffffff;
+    --gray: #9ca3af;
     --success: #10b981;
     --warning: #f59e0b;
     --error: #ef4444;
     --glass: rgba(255, 255, 255, 0.05);
     --glass-border: rgba(255, 255, 255, 0.1);
-    --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+    --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
     --section-spacing: 6rem;
 }
 
@@ -27,7 +27,7 @@ body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
     color: var(--light);
-    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #0f172a 100%);
+    background: linear-gradient(135deg, #000000 0%, #111111 50%, #1a1a1a 100%);
     min-height: 100vh;
     overflow-x: hidden;
 }
@@ -42,12 +42,12 @@ body::before {
     height: 140vh;
     background: url('../images/accofy-logo.png') no-repeat center center;
     background-size: contain;
-    opacity: 0.03; /* toned down watermark */
+    opacity: 0.02; /* even more toned down for darker theme */
     transform: translate(-50%, -50%) rotate(-10deg);
     pointer-events: none;
     z-index: 0;
     animation: subtle-float 25s ease-in-out infinite;
-    filter: drop-shadow(0 0 50px rgba(37, 99, 235, 0.15));
+    filter: drop-shadow(0 0 50px rgba(255, 255, 255, 0.05));
 }
 
 @keyframes subtle-float {
@@ -88,16 +88,16 @@ body::after {
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(2, 6, 23, 0.8);
+    background: rgba(0, 0, 0, 0.9);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     z-index: 1000;
     padding: 1rem 0;
 }
 
 .header.scrolled {
-    background: rgba(2, 6, 23, 0.9);
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.95);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
 }
 
 .nav {
@@ -539,7 +539,7 @@ section:hover::before {
 
 /* Capabilities Section */
 .capabilities {
-    background: linear-gradient(180deg, transparent 0%, rgba(2, 6, 23, 0.6) 50%, transparent 100%);
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.7) 50%, transparent 100%);
 }
 
 .capabilities-grid {
@@ -581,7 +581,7 @@ section:hover::before {
 
 /* Toolkit (GIFs) Section */
 .toolkit {
-    background: linear-gradient(180deg, transparent 0%, rgba(2, 6, 23, 0.8) 100%);
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.9) 100%);
 }
 
 .gif-grid {
@@ -650,7 +650,7 @@ section:hover::before {
 }
 /* Pain Points Section */
 .pain-points {
-    background: linear-gradient(180deg, transparent 0%, var(--dark) 50%, transparent 100%);
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.8) 50%, transparent 100%);
     padding: var(--section-spacing) 0;
 }
 
