@@ -183,6 +183,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Optimize videos - lazy load and pause when out of view
+    const videos = document.querySelectorAll('.video-card video');
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const video = entry.target;
+            if (entry.isIntersecting) {
+                // Play video when in view
+                video.play().catch(err => console.log('Video autoplay prevented:', err));
+            } else {
+                // Pause video when out of view to save resources
+                video.pause();
+            }
+        });
+    }, {
+        threshold: 0.25,
+        rootMargin: '50px'
+    });
+
+    videos.forEach(video => {
+        videoObserver.observe(video);
+        // Add error handling for videos
+        video.addEventListener('error', () => {
+            console.error('Video failed to load:', video.src);
+        });
+    });
+
     // Mobile menu functionality
     const navLeft = document.querySelector('.nav-left');
     const navLinks = document.querySelectorAll('.nav-link');
