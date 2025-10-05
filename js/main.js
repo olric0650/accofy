@@ -216,51 +216,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Professional video animation on scroll with intelligent sequencing
-    const videoContainers = document.querySelectorAll('.feature-video-container, .capability-video-container, .security-hero-video');
+    // Professional AI cards animation on scroll
+    const aiCards = document.querySelectorAll('.ai-card');
     
-    // Group videos by their parent section for better staggering
-    const videosBySection = new Map();
-    videoContainers.forEach(container => {
-        const section = container.closest('section');
-        if (section) {
-            if (!videosBySection.has(section)) {
-                videosBySection.set(section, []);
-            }
-            videosBySection.get(section).push(container);
-        }
-    });
-    
-    const videoAnimationObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+    const aiCardObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                const section = entry.target.closest('section');
-                const sectionVideos = videosBySection.get(section) || [];
-                const indexInSection = sectionVideos.indexOf(entry.target);
+                // Get index of card in the grid for staggering
+                const allCards = Array.from(aiCards);
+                const cardIndex = allCards.indexOf(entry.target);
                 
-                // Stagger animations within each section
+                // Stagger animation based on position in grid
                 setTimeout(() => {
                     entry.target.classList.add('animate-in');
-                    
-                    // Add subtle sound effect feel with a micro-delay
-                    setTimeout(() => {
-                        entry.target.style.transform = 'scale(1.02) translateY(0)';
-                        setTimeout(() => {
-                            entry.target.style.transform = '';
-                        }, 100);
-                    }, 300);
-                }, indexInSection * 200); // 200ms stagger between videos in same section
+                }, (cardIndex % 4) * 80); // Stagger by row position
                 
-                videoAnimationObserver.unobserve(entry.target);
+                aiCardObserver.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px -80px 0px'
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
     });
 
-    videoContainers.forEach(container => {
-        videoAnimationObserver.observe(container);
+    aiCards.forEach(card => {
+        aiCardObserver.observe(card);
     });
 
     // Mobile menu functionality
