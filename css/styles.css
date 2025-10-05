@@ -400,23 +400,51 @@ body::after {
 .feature-video-container {
     width: 100%;
     height: 140px;
-    border-radius: 12px;
+    border-radius: 16px;
     overflow: hidden;
     margin-bottom: 1rem;
     position: relative;
+    opacity: 0;
+    transform: scale(0.85) translateY(50px) rotateX(10deg);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.feature-video-container.animate-in {
+    opacity: 1;
+    transform: scale(1) translateY(0) rotateX(0deg);
+    box-shadow: 0 20px 60px rgba(37, 99, 235, 0.2);
 }
 
 .feature-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.9);
-    transition: all 0.3s ease;
+    filter: brightness(0.9) contrast(1.1);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .feature-with-video:hover .feature-video {
-    filter: brightness(1);
-    transform: scale(1.05);
+    filter: brightness(1.1) contrast(1.15);
+    transform: scale(1.08);
+}
+
+.feature-video-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.feature-with-video:hover .feature-video-container::before {
+    opacity: 1;
 }
 
 /* Buttons */
@@ -706,22 +734,49 @@ section:hover::before {
 .capability-video-container {
     width: 100%;
     height: 120px;
-    border-radius: 12px;
+    border-radius: 14px;
     overflow: hidden;
     margin-bottom: 1rem;
+    opacity: 0;
+    transform: scale(0.9) translateY(40px);
+    transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+.capability-video-container.animate-in {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    box-shadow: 0 15px 50px rgba(37, 99, 235, 0.15);
 }
 
 .capability-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.85);
-    transition: all 0.3s ease;
+    filter: brightness(0.85) saturate(1.1);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .capability-with-video:hover .capability-video {
-    filter: brightness(1);
-    transform: scale(1.05);
+    filter: brightness(1.05) saturate(1.2);
+    transform: scale(1.1);
+}
+
+.capability-video-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.capability-with-video:hover .capability-video-container::after {
+    opacity: 1;
 }
 
 /* Toolkit (Videos) Section */
@@ -803,19 +858,40 @@ section:hover::before {
         opacity: 0.1;
     }
     
-    /* Feature videos */
+    /* Feature videos - Simplified animations for mobile */
     .feature-video-container {
         height: 120px;
+        transform: scale(0.9) translateY(30px);
+        transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .feature-video-container.animate-in {
+        transform: scale(1) translateY(0);
+        box-shadow: 0 15px 40px rgba(37, 99, 235, 0.15);
     }
     
     /* Capability videos */
     .capability-video-container {
         height: 100px;
+        transform: scale(0.95) translateY(25px);
+        transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .capability-video-container.animate-in {
+        transform: scale(1) translateY(0);
+        box-shadow: 0 12px 35px rgba(37, 99, 235, 0.12);
     }
     
     /* Security video */
     .security-hero-video {
         height: 200px;
+        transform: scale(0.9) translateY(35px);
+        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .security-hero-video.animate-in {
+        transform: scale(1) translateY(0);
+        box-shadow: 0 20px 50px rgba(37, 99, 235, 0.2);
     }
 }
 /* Pain Points Section */
@@ -1325,16 +1401,65 @@ section:hover::before {
     max-width: 900px;
     height: 300px;
     margin: 0 auto 3rem;
-    border-radius: 20px;
+    border-radius: 24px;
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transform: scale(0.85) translateY(60px) perspective(1000px) rotateX(15deg);
+    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+
+.security-hero-video.animate-in {
+    opacity: 1;
+    transform: scale(1) translateY(0) perspective(1000px) rotateX(0deg);
+    box-shadow: 0 30px 80px rgba(37, 99, 235, 0.3), 0 0 40px rgba(37, 99, 235, 0.1);
+}
+
+.security-hero-video::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        rgba(37, 99, 235, 0.3) 0%, 
+        rgba(59, 130, 246, 0.3) 25%, 
+        rgba(37, 99, 235, 0.3) 50%, 
+        rgba(59, 130, 246, 0.3) 75%, 
+        rgba(37, 99, 235, 0.3) 100%);
+    border-radius: 24px;
+    opacity: 0;
+    z-index: -1;
+    animation: borderGlow 3s linear infinite;
+    transition: opacity 0.5s ease;
+}
+
+.security-hero-video.animate-in::before {
+    opacity: 1;
+}
+
+@keyframes borderGlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 200% 50%;
+    }
 }
 
 .security-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.9);
+    filter: brightness(0.95) contrast(1.1) saturate(1.1);
+    transition: all 0.5s ease;
+}
+
+.security-hero-video:hover .security-video {
+    filter: brightness(1.05) contrast(1.15) saturate(1.15);
+    transform: scale(1.05);
 }
 
 .security-grid {

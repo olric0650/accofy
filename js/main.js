@@ -216,6 +216,53 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Professional video animation on scroll with intelligent sequencing
+    const videoContainers = document.querySelectorAll('.feature-video-container, .capability-video-container, .security-hero-video');
+    
+    // Group videos by their parent section for better staggering
+    const videosBySection = new Map();
+    videoContainers.forEach(container => {
+        const section = container.closest('section');
+        if (section) {
+            if (!videosBySection.has(section)) {
+                videosBySection.set(section, []);
+            }
+            videosBySection.get(section).push(container);
+        }
+    });
+    
+    const videoAnimationObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const section = entry.target.closest('section');
+                const sectionVideos = videosBySection.get(section) || [];
+                const indexInSection = sectionVideos.indexOf(entry.target);
+                
+                // Stagger animations within each section
+                setTimeout(() => {
+                    entry.target.classList.add('animate-in');
+                    
+                    // Add subtle sound effect feel with a micro-delay
+                    setTimeout(() => {
+                        entry.target.style.transform = 'scale(1.02) translateY(0)';
+                        setTimeout(() => {
+                            entry.target.style.transform = '';
+                        }, 100);
+                    }, 300);
+                }, indexInSection * 200); // 200ms stagger between videos in same section
+                
+                videoAnimationObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -80px 0px'
+    });
+
+    videoContainers.forEach(container => {
+        videoAnimationObserver.observe(container);
+    });
+
     // Mobile menu functionality
     const navLeft = document.querySelector('.nav-left');
     const navLinks = document.querySelectorAll('.nav-link');
