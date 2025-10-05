@@ -280,9 +280,38 @@ body::after {
     min-height: calc(100vh - 120px);
     text-align: center;
     position: relative;
+    overflow: hidden;
 }
 
-.hero .container {
+/* Hero Video Background */
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.15;
+    filter: blur(2px);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
+    z-index: 1;
+}
+
+.hero-content {
     position: relative;
     z-index: 2;
 }
@@ -292,6 +321,7 @@ body::after {
     font-weight: 700;
     margin-bottom: 1.5rem;
     background: linear-gradient(135deg, var(--light) 0%, rgba(255, 255, 255, 0.8) 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 0 30px rgba(37, 99, 235, 0.1);
@@ -359,6 +389,34 @@ body::after {
 .feature:hover .feature-icon,
 .advanced-feature:hover .advanced-feature-icon {
     transform: rotate(0deg) scale(1.1);
+}
+
+/* Feature Videos (Compact) */
+.feature-with-video {
+    display: flex;
+    flex-direction: column;
+}
+
+.feature-video-container {
+    width: 100%;
+    height: 140px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.feature-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.9);
+    transition: all 0.3s ease;
+}
+
+.feature-with-video:hover .feature-video {
+    filter: brightness(1);
+    transform: scale(1.05);
 }
 
 /* Buttons */
@@ -639,6 +697,33 @@ section:hover::before {
     margin: 0;
 }
 
+/* Capability Videos */
+.capability-with-video {
+    display: flex;
+    flex-direction: column;
+}
+
+.capability-video-container {
+    width: 100%;
+    height: 120px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.capability-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.85);
+    transition: all 0.3s ease;
+}
+
+.capability-with-video:hover .capability-video {
+    filter: brightness(1);
+    transform: scale(1.05);
+}
+
 /* Toolkit (Videos) Section */
 .toolkit {
     background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.9) 100%);
@@ -710,6 +795,26 @@ section:hover::before {
     }
     
     .video-card video {
+        height: 200px;
+    }
+    
+    /* Hero video */
+    .hero-video {
+        opacity: 0.1;
+    }
+    
+    /* Feature videos */
+    .feature-video-container {
+        height: 120px;
+    }
+    
+    /* Capability videos */
+    .capability-video-container {
+        height: 100px;
+    }
+    
+    /* Security video */
+    .security-hero-video {
         height: 200px;
     }
 }
@@ -1212,6 +1317,24 @@ section:hover::before {
 .enterprise-security {
     background: linear-gradient(180deg, transparent 0%, rgba(2, 6, 23, 0.5) 100%);
     padding: var(--section-spacing) 0;
+}
+
+/* Security Hero Video */
+.security-hero-video {
+    width: 100%;
+    max-width: 900px;
+    height: 300px;
+    margin: 0 auto 3rem;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.security-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.9);
 }
 
 .security-grid {

@@ -184,10 +184,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Optimize videos - lazy load and pause when out of view
-    const videos = document.querySelectorAll('.video-card video');
+    const allVideos = document.querySelectorAll('video');
     const videoObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             const video = entry.target;
+            
+            // Hero video and security hero video always play
+            if (video.classList.contains('hero-video') || video.classList.contains('security-video')) {
+                video.play().catch(err => console.log('Video autoplay prevented:', err));
+                return;
+            }
+            
             if (entry.isIntersecting) {
                 // Play video when in view
                 video.play().catch(err => console.log('Video autoplay prevented:', err));
@@ -197,11 +204,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }, {
-        threshold: 0.25,
-        rootMargin: '50px'
+        threshold: 0.2,
+        rootMargin: '100px'
     });
 
-    videos.forEach(video => {
+    allVideos.forEach(video => {
         videoObserver.observe(video);
         // Add error handling for videos
         video.addEventListener('error', () => {
