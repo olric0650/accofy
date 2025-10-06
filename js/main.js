@@ -189,12 +189,6 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             const video = entry.target;
             
-            // Hero video and security hero video always play
-            if (video.classList.contains('hero-video') || video.classList.contains('security-video')) {
-                video.play().catch(err => console.log('Video autoplay prevented:', err));
-                return;
-            }
-            
             if (entry.isIntersecting) {
                 // Play video when in view
                 video.play().catch(err => console.log('Video autoplay prevented:', err));
