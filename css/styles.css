@@ -430,57 +430,94 @@ body::after {
     position: absolute;
     width: 200px;
     height: 200px;
-    border-radius: 16px;
+    border-radius: 50%;
     overflow: hidden;
     opacity: 0;
-    transform: scale(0.3);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
-                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 15px 50px rgba(37, 99, 235, 0.3), 0 0 25px rgba(37, 99, 235, 0.2);
-    border: 1.5px solid rgba(37, 99, 235, 0.4);
+    transform: perspective(1000px) rotateY(90deg) scale(0.5);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                border-radius 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+    box-shadow: 0 20px 60px rgba(37, 99, 235, 0.4), 
+                0 0 40px rgba(37, 99, 235, 0.3),
+                inset 0 0 30px rgba(37, 99, 235, 0.2);
+    border: 2px solid rgba(37, 99, 235, 0.6);
+    position: relative;
 }
 
 .floating-video.visible {
-    opacity: 0.3;
-    transform: scale(1);
+    opacity: 0.35;
+    transform: perspective(1000px) rotateY(0deg) rotateX(-5deg) scale(1);
+    border-radius: 16px;
 }
 
 .floating-video.hide {
     opacity: 0;
-    transform: scale(0.3);
+    transform: perspective(1000px) rotateY(-90deg) scale(0.5);
+    border-radius: 50%;
 }
 
+/* Spotlight effect overlay */
 .floating-video::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, 
-        rgba(37, 99, 235, 0.2) 0%, 
-        rgba(59, 130, 246, 0.1) 50%, 
-        transparent 100%);
-    z-index: 1;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, 
+        rgba(255, 255, 255, 0.8) 0%, 
+        rgba(255, 255, 255, 0.3) 20%, 
+        transparent 40%);
+    opacity: 0;
+    animation: spotlight-scan 2s ease-out forwards;
+    z-index: 2;
     pointer-events: none;
     mix-blend-mode: overlay;
 }
 
+.floating-video.visible::before {
+    animation: spotlight-scan 1.5s ease-out;
+}
+
+@keyframes spotlight-scan {
+    0% {
+        transform: translate(-100%, -100%) scale(0.5);
+        opacity: 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    60% {
+        transform: translate(50%, 50%) scale(1.5);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(100%, 100%) scale(2);
+        opacity: 0;
+    }
+}
+
+/* Glow pulse effect */
 .floating-video::after {
     content: '';
     position: absolute;
-    top: -3px;
-    left: -3px;
-    right: -3px;
-    bottom: -3px;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
     background: linear-gradient(45deg, 
         rgba(37, 99, 235, 0.8), 
         rgba(59, 130, 246, 0.8), 
         rgba(37, 99, 235, 0.8));
-    border-radius: 22px;
-    opacity: 0.6;
+    border-radius: inherit;
+    opacity: 0;
     z-index: -1;
-    filter: blur(15px);
+    filter: blur(20px);
+    transition: opacity 0.8s ease;
+}
+
+.floating-video.visible::after {
+    opacity: 0.7;
     animation: pulse-glow 3s ease-in-out infinite;
 }
 
@@ -488,10 +525,12 @@ body::after {
     0%, 100% {
         opacity: 0.5;
         transform: scale(1);
+        filter: blur(20px);
     }
     50% {
-        opacity: 0.8;
-        transform: scale(1.08);
+        opacity: 0.9;
+        transform: scale(1.1);
+        filter: blur(25px);
     }
 }
 
@@ -499,7 +538,7 @@ body::after {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(1) contrast(1.15) saturate(1.2);
+    filter: brightness(1.05) contrast(1.2) saturate(1.3);
 }
 
 /* Left side positioning - Center origin */
@@ -998,28 +1037,49 @@ section:hover::before {
 /* Responsive adjustments */
 @media (max-width: 1024px) {
     .floating-video {
-        width: 150px;
-        height: 150px;
+        width: 160px;
+        height: 160px;
     }
     
     .floating-video.left {
-        left: 20px;
+        left: 25px;
     }
     
     .floating-video.right {
-        right: 20px;
+        right: 25px;
     }
 }
 
 @media (max-width: 768px) {
     /* Smaller floating videos on mobile */
     .floating-video {
-        width: 100px;
-        height: 100px;
+        width: 110px;
+        height: 110px;
+    }
+    
+    .floating-video.visible {
+        opacity: 0.25;
+        transform: perspective(800px) rotateY(0deg) rotateX(-3deg) scale(1);
+    }
+    
+    .floating-video.left {
+        left: 10px;
+    }
+    
+    .floating-video.right {
+        right: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .floating-video {
+        width: 90px;
+        height: 90px;
     }
     
     .floating-video.visible {
         opacity: 0.2;
+        transform: perspective(600px) rotateY(0deg) scale(1);
     }
     
     .floating-video.left {
@@ -1028,17 +1088,6 @@ section:hover::before {
     
     .floating-video.right {
         right: 5px;
-    }
-}
-
-@media (max-width: 480px) {
-    .floating-video {
-        width: 80px;
-        height: 80px;
-    }
-    
-    .floating-video.visible {
-        opacity: 0.15;
     }
 }
 /* Pain Points Section */
