@@ -216,32 +216,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Professional AI cards animation on scroll
-    const aiCards = document.querySelectorAll('.ai-card');
+    // Floating videos appear on scroll
+    const floatingVideos = document.querySelectorAll('.floating-video');
     
-    const aiCardObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-                // Get index of card in the grid for staggering
-                const allCards = Array.from(aiCards);
-                const cardIndex = allCards.indexOf(entry.target);
-                
-                // Stagger animation based on position in grid
-                setTimeout(() => {
-                    entry.target.classList.add('animate-in');
-                }, (cardIndex % 4) * 80); // Stagger by row position
-                
-                aiCardObserver.unobserve(entry.target);
+    const handleFloatingVideos = () => {
+        const scrollY = window.pageYOffset;
+        
+        floatingVideos.forEach(video => {
+            const offset = parseInt(video.getAttribute('data-scroll-offset'));
+            if (scrollY > offset) {
+                video.classList.add('visible');
+            } else {
+                video.classList.remove('visible');
             }
         });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    });
-
-    aiCards.forEach(card => {
-        aiCardObserver.observe(card);
-    });
+    };
+    
+    // Throttle scroll for performance
+    let floatingVideoTicking = false;
+    window.addEventListener('scroll', () => {
+        if (!floatingVideoTicking) {
+            window.requestAnimationFrame(() => {
+                handleFloatingVideos();
+                floatingVideoTicking = false;
+            });
+            floatingVideoTicking = true;
+        }
+    }, { passive: true });
+    
+    // Initial check
+    handleFloatingVideos();
 
     // Mobile menu functionality
     const navLeft = document.querySelector('.nav-left');
