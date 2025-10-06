@@ -216,18 +216,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Floating videos appear on scroll
+    // Floating videos appear/disappear on scroll with range
     const floatingVideos = document.querySelectorAll('.floating-video');
     
     const handleFloatingVideos = () => {
         const scrollY = window.pageYOffset;
+        const windowHeight = window.innerHeight;
         
         floatingVideos.forEach(video => {
             const offset = parseInt(video.getAttribute('data-scroll-offset'));
-            if (scrollY > offset) {
+            const showRange = 800; // Video 800px boyunca görünür
+            
+            // Video görünme aralığı
+            const showStart = offset;
+            const showEnd = offset + showRange;
+            
+            if (scrollY > showStart && scrollY < showEnd) {
+                // Görünür aralıkta
                 video.classList.add('visible');
-            } else {
+                video.classList.remove('hide');
+            } else if (scrollY >= showEnd) {
+                // Üstte kaldı - kaybolsun
                 video.classList.remove('visible');
+                video.classList.add('hide');
+            } else {
+                // Henüz gelmedi
+                video.classList.remove('visible');
+                video.classList.remove('hide');
             }
         });
     };
