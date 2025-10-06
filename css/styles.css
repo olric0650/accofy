@@ -1493,8 +1493,22 @@ section:hover::before {
 }
 
 @media (max-width: 768px) {
+    /* Force black background on mobile */
+    body {
+        background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%) !important;
+    }
+    
+    body::after {
+        background: radial-gradient(circle at 50% 50%, 
+            rgba(0, 0, 0, 0) 0%, 
+            rgba(0, 0, 0, 0.3) 100%
+        ) !important;
+    }
+    
     :root {
         --section-spacing: 4rem;
+        --darker: #000000;
+        --dark: #000000;
     }
     
     .header-logo {
@@ -1528,6 +1542,23 @@ section:hover::before {
     }
     
     /* Mobile-specific improvements */
+    
+    /* Ensure all sections have black backgrounds on mobile */
+    section {
+        background: rgba(0, 0, 0, 0.5) !important;
+    }
+    
+    .pain-points,
+    .features,
+    .capabilities,
+    .platforms,
+    .enterprise-security,
+    .advanced-features,
+    .integrations,
+    .get-started {
+        background: transparent !important;
+    }
+    
     .hero-title {
         font-size: clamp(2rem, 5vw, 3rem);
         line-height: 1.2;
@@ -1537,7 +1568,7 @@ section:hover::before {
     .hero-subtitle {
         font-size: clamp(1rem, 3vw, 1.25rem);
         line-height: 1.4;
-        color: var(--gray) !important;
+        color: rgba(255, 255, 255, 0.85) !important;
     }
     
     .cta-button {
@@ -1551,6 +1582,7 @@ section:hover::before {
     .feature, .capability-card, .pain-point {
         padding: 1.5rem;
         margin-bottom: 1rem;
+        background: rgba(255, 255, 255, 0.08) !important;
     }
     
     .feature h3, .capability-card h3, .pain-point h3 {
@@ -1558,7 +1590,7 @@ section:hover::before {
     }
     
     .feature p, .capability-card p, .pain-point p {
-        color: var(--gray) !important;
+        color: rgba(255, 255, 255, 0.75) !important;
     }
     
     .video-card video {
@@ -1567,6 +1599,7 @@ section:hover::before {
     
     .action-card {
         padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.08) !important;
     }
     
     .action-card h3 {
@@ -1574,7 +1607,13 @@ section:hover::before {
     }
     
     .action-card p {
-        color: var(--gray) !important;
+        color: rgba(255, 255, 255, 0.75) !important;
+    }
+    
+    .platform-card,
+    .security-card,
+    .processor-card {
+        background: rgba(255, 255, 255, 0.08) !important;
     }
     
     .action-form input,
