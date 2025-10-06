@@ -23,11 +23,15 @@
     box-sizing: border-box;
 }
 
+html {
+    background: #000000;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
     color: var(--light);
-    background: linear-gradient(135deg, #000000 0%, #111111 50%, #1a1a1a 100%);
+    background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%);
     min-height: 100vh;
     overflow-x: hidden;
 }
@@ -1493,22 +1497,31 @@ section:hover::before {
 }
 
 @media (max-width: 768px) {
-    /* Force black background on mobile */
+    /* Force pure black background on mobile */
+    html {
+        background: #000000 !important;
+    }
+    
     body {
-        background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%) !important;
+        background: #000000 !important;
+        background-color: #000000 !important;
+    }
+    
+    body::before {
+        display: none !important;
     }
     
     body::after {
-        background: radial-gradient(circle at 50% 50%, 
-            rgba(0, 0, 0, 0) 0%, 
-            rgba(0, 0, 0, 0.3) 100%
-        ) !important;
+        background: transparent !important;
     }
     
     :root {
         --section-spacing: 4rem;
         --darker: #000000;
         --dark: #000000;
+        --primary: #111827;
+        --primary-light: #1f2937;
+        --secondary: #374151;
     }
     
     .header-logo {
@@ -1543,9 +1556,9 @@ section:hover::before {
     
     /* Mobile-specific improvements */
     
-    /* Ensure all sections have black backgrounds on mobile */
+    /* Ensure all sections have pure black backgrounds on mobile */
     section {
-        background: rgba(0, 0, 0, 0.5) !important;
+        background: #000000 !important;
     }
     
     .pain-points,
@@ -1555,8 +1568,23 @@ section:hover::before {
     .enterprise-security,
     .advanced-features,
     .integrations,
-    .get-started {
-        background: transparent !important;
+    .get-started,
+    .payment-processing {
+        background: #000000 !important;
+    }
+    
+    .hero {
+        background: #000000 !important;
+    }
+    
+    main {
+        background: #000000 !important;
+    }
+    
+    /* Remove all gradient overlays on mobile */
+    section::before,
+    section::after {
+        display: none !important;
     }
     
     .hero-title {
